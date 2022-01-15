@@ -32,7 +32,8 @@
     "semver": "7.3.5",
     "update-electron-app": "2.0.1",
     "extract-zip": "2.0.1",
-    "https-proxy-agent": "5.0.0"
+    "https-proxy-agent": "5.0.0",
+    "@andelf/rsapi": "0.0.2"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.57",
