@@ -960,7 +960,7 @@
           (cond
             (and (= (get-in config [:block :block/format]) :org)
                  (= "Complex" (first url))
-                 (= (string/lower-case protocol) "id")
+                 (= (string/lower-case (:protocol (second url))) "id")
                  (string? (:link (second url)))
                  (util/uuid-string? (:link (second url)))) ; org mode id
             (let [id (uuid (:link (second url)))

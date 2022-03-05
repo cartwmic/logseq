@@ -100,6 +100,7 @@
                           (seq tagged-pages)
                           (seq namespaces))
             linked (set (flatten links))
+            page-name->original-name (merge (zipmap linked linked) page-name->original-name )
             build-in-pages (set (map string/lower-case default-db/built-in-pages-names))
             nodes (cond->> (map :block/name pages-after-journal-filter)
                     (not builtin-pages?)

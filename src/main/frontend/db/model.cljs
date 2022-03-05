@@ -850,21 +850,22 @@
   [repo with-journal?]
   (when-let [conn (conn/get-conn repo)]
     (let [q (if with-journal?
-              '[:find ?page ?ref-page-name
+              '[:find ?page ?properties
                 :where
                 [?p :block/name ?page]
                 [?block :block/page ?p]
                 [?block :block/refs ?ref-page]
-                [?ref-page :block/name ?ref-page-name]]
-              '[:find ?page ?ref-page-name
+                [?ref-page :block/properties ?properties]]
+              '[:find ?page ?properties
                 :where
                 [?p :block/journal? false]
                 [?p :block/name ?page]
                 [?block :block/page ?p]
                 [?block :block/refs ?ref-page]
-                [?ref-page :block/name ?ref-page-name]])]
+                [?ref-page :block/properties ?properties]])]
       (->>
        (d/q q conn)
+       (map (fn [query-result] [(first query-result) (:title (second query-result))]))
        (map (fn [[page ref-page-name]]
               [page ref-page-name]))))))
 
